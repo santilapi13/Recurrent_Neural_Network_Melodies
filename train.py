@@ -44,4 +44,4 @@ def train(input_units=SEQUENCE_LENGTH, output_units=OUTPUT_UNITS, num_units=NUM_
 	model.save(SAVE_MODEL_PATH)
 
 if __name__ == "__main__":
-	train()
+	train(input_units=None)
