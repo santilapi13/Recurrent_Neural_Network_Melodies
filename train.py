@@ -30,12 +30,12 @@ EPOCHS = 50
 BATCH_SIZE = 64  # Muestras que se verán antes del backpropagation
 SAVE_MODEL_PATH = "model.h5"
 
-def train(output_units=OUTPUT_UNITS, num_units=NUM_UNITS, loss=LOSS, learning_rate=LEARNING_RATE):
+def train(input_units=SEQUENCE_LENGTH, output_units=OUTPUT_UNITS, num_units=NUM_UNITS, loss=LOSS, learning_rate=LEARNING_RATE):
 	# Generar las secuencias de entrenamiento
 	inputs, targets = generate_training_sequences(SEQUENCE_LENGTH)
 
 	# Armar la RNN
-	model = build_model(SEQUENCE_LENGTH, output_units, num_units, loss, learning_rate)
+	model = build_model(input_units, output_units, num_units, loss, learning_rate)
 
 	# Entrenar el modelo
 	model.fit(inputs, targets, epochs=EPOCHS, batch_size=BATCH_SIZE)
