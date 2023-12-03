@@ -18,7 +18,7 @@ class MelodyGenerator:
 		# Creación de la semilla con símbolos iniciales
 		seed = seed.split()
 		melody = seed
-		seed = self._start_simbols + seed  # Se concatena luego de los símbolos iniciales
+		seed = self._start_symbols + seed  # Se concatena luego de los símbolos iniciales
 
 		# Mapear semilla en enteros según nuestro vocabulario
 		seed = [self._mappings[symbol] for symbol in seed]
@@ -69,26 +69,26 @@ class MelodyGenerator:
 		step_counter = 1
 		
 		for i, symbol in enumerate(melody):
-				if symbol != "_" or i + 1 == len(melody):  # Caso 1: evento de nota/silencio (o final)
-					if start_symbol is not None:  # diferenciar del símbolo inicial
-						quarter_length_duration = step_duration * step_counter
-						if start_symbol == "r":  # silencio
-							m21_event = m21.note.Rest(quarterLength=quarter_length_duration)
-						else:  # nota
-							m21_event = m21.note.Note(int(start_symbol), quarterLength=quarter_length_duration)
-						
-						stream.append(m21_event)							
-						step_counter = 1
-						start_symbol = symbol
-				else:  # Caso 2: prolongación del último evento "_"
-					step_counter += 1
+			if symbol != "_" or i + 1 == len(melody):  # Caso 1: evento de nota/silencio (o final)
+				if start_symbol is not None:  # diferenciar del símbolo inicial
+					quarter_length_duration = step_duration * step_counter
+					if start_symbol == "r":  # silencio
+						m21_event = m21.note.Rest(quarterLength=quarter_length_duration)
+					else:  # nota
+						m21_event = m21.note.Note(int(start_symbol), quarterLength=quarter_length_duration)
+					
+					stream.append(m21_event)							
+					step_counter = 1
+				start_symbol = symbol
+			else:  # Caso 2: prolongación del último evento "_"
+				step_counter += 1
 
 		# Guardarlo en archivo MIDI
 		stream.write(format, file_name)
 
 if __name__ == "__main__":
 	mg = MelodyGenerator()
-	seed ="55 _ _ _ 60 _ _ _ 55 _ _ _ 55 _"
-	melody = mg.generate_melody(seed, 500, SEQUENCE_LENGTH, 0.7)
+	seed ="60 _ _ _ 62 _ _ _ 64 _ _ _"
+	melody = mg.generate_melody(seed, 500, SEQUENCE_LENGTH, 0.8)
 	mg.save_melody(melody)
 	print(melody)

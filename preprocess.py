@@ -4,7 +4,7 @@ import json
 from tensorflow import keras
 import numpy as np
 
-KERN_DATASET_PATH = "songs/erk"
+KERN_DATASET_PATH = "songs/allerkbd"
 SAVE_DIR = "dataset"
 SINGLE_FILE_DATASET = "file_dataset"
 SEQUENCE_LENGTH = 64  # Cant. de elementos de la secuencia (fijado)

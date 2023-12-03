@@ -1,6 +1,14 @@
 from preprocess import generate_training_sequences, SEQUENCE_LENGTH
 from tensorflow import keras
 
+OUTPUT_UNITS = 31   # Tamaño del vocabulario -> Neuronas de la capa de salida
+NUM_UNITS = [256]  # Neuronas de las capas internas
+LOSS = "sparse_categorical_crossentropy"
+LEARNING_RATE = 0.001
+EPOCHS = 50
+BATCH_SIZE = 64  # Muestras que se verán antes del backpropagation
+SAVE_MODEL_PATH = "model.h5"
+
 def build_model(input_units, output_units, num_units, loss, learning_rate):
 	# Creacion de la arquitectura
 	input = keras.layers.Input(shape=(input_units, output_units))
@@ -21,14 +29,6 @@ def build_model(input_units, output_units, num_units, loss, learning_rate):
 	model.summary()
 
 	return model
-
-OUTPUT_UNITS = 38   # Tamaño del vocabulario -> Neuronas de la capa de salida
-NUM_UNITS = [256]  # Neuronas de las capas internas
-LOSS = "sparse_categorical_crossentropy"
-LEARNING_RATE = 0.001
-EPOCHS = 50
-BATCH_SIZE = 64  # Muestras que se verán antes del backpropagation
-SAVE_MODEL_PATH = "model.h5"
 
 def train(input_units=SEQUENCE_LENGTH, output_units=OUTPUT_UNITS, num_units=NUM_UNITS, loss=LOSS, learning_rate=LEARNING_RATE):
 	# Generar las secuencias de entrenamiento
