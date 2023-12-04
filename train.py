@@ -1,7 +1,7 @@
 from preprocess import generate_training_sequences, SEQUENCE_LENGTH
 from tensorflow import keras
 
-OUTPUT_UNITS = 31   # Tamaño del vocabulario -> Neuronas de la capa de salida
+OUTPUT_UNITS = 38   # Tamaño del vocabulario -> Neuronas de la capa de salida
 NUM_UNITS = [256]  # Neuronas de las capas internas
 LOSS = "sparse_categorical_crossentropy"
 LEARNING_RATE = 0.001
