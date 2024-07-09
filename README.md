@@ -1,4 +1,4 @@
-# RNN Long-Short Term Memory to predict melodies 🎶
+# RNN Long-Short Term Memory to generate melodies 🎶
 This project is fully based on Valerio Velardo videos about AI and music: https://github.com/musikalkemist
 RNN-LSTM model trained with traditional German melodies to generate coherent melodies from a initial seed of notes and silences.
 
